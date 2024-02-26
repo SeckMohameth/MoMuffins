@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
 {
 
     public GameObject fallingMuffinPrefab;
-    public float secondsBetweenSpawns = 1;
+    public float secondsBetweenSpawns = 5;
     float nextSpawnTime;
 
     Vector2 screenHalfSizeWorldUnits;
@@ -30,11 +30,9 @@ public class Spawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             nextSpawnTime = Time.time + secondsBetweenSpawns;
-            Vector2 spawnPosition = new Vector2 (Random.Range (-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), screenHalfSizeWorldUnits.y);
+            Vector2 spawnPosition = new Vector2 (Random.Range (-screenHalfSizeWorldUnits.x, screenHalfSizeWorldUnits.x), screenHalfSizeWorldUnits.y + .5f);
             Instantiate(fallingMuffinPrefab, spawnPosition, Quaternion.identity);
         }
-
-
 
     }
 
