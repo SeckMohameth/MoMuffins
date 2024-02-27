@@ -10,13 +10,18 @@ public class PlayerMovement : MonoBehaviour
 
     float screenHalfWidthInWorldUnits;
 
+
+    // reference to the LogicScript component
+    public LogicScript logicScript;
+
+
     // Start is called before the first frame update
     void Start()
     {
         float halfPlayerWidth = transform.localScale.x / 2f;
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize - halfPlayerWidth;
 
-
+        logicScript = FindObjectOfType<LogicScript>();
     }
 
     // Update is called once per frame
@@ -37,5 +42,11 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(screenHalfWidthInWorldUnits, transform.position.y);
         }
 
+    }
+
+    public void AdjustSpeed()
+    {
+        // Call the method to adjust the player's speed based on weight
+        logicScript.UpdatePlayerSpeed(this);
     }
 }
