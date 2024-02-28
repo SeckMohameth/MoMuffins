@@ -27,4 +27,11 @@ public class HealthManager : MonoBehaviour
             hearts[i].sprite = fullHeart;
         }
     }
+
+
+    //public void TakeDamage(int damage)
+    //{
+    //    health -= damage;
+
+    //}
 }

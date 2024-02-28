@@ -41,5 +41,6 @@ public class FallingMuffins : MonoBehaviour
             logic.addScore();
             Destroy(gameObject);
         }
+       
     }
 }

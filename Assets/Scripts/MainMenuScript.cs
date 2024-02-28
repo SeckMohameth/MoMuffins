@@ -32,7 +32,7 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
-    public void Quite()
+    public void Quit()
     {
         SceneManager.LoadScene("Main Menu");
     }

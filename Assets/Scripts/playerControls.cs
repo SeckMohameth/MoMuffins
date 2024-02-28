@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     float screenHalfWidthInWorldUnits;
 
+    public bool moIsAlive = true;
 
     // reference to the LogicScript component
     public LogicScript logicScript;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize - halfPlayerWidth;
 
         logicScript = FindObjectOfType<LogicScript>();
+
     }
 
     // Update is called once per frame
@@ -42,6 +44,21 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(screenHalfWidthInWorldUnits, transform.position.y);
         }
 
+
+        HealthManager healthManager = FindObjectOfType<HealthManager>();
+
+
+
+        // GAME OVER
+        if (healthManager.health <= 0)
+        {
+            //handle game over
+            Debug.Log("Health is 0 or less, game over should trigger.");
+
+            logicScript.gameOver();
+            moIsAlive = false;
+        }
+
     }
 
     public void AdjustSpeed()
@@ -49,4 +66,5 @@ public class PlayerMovement : MonoBehaviour
         // Call the method to adjust the player's speed based on weight
         logicScript.UpdatePlayerSpeed(this);
     }
+
 }

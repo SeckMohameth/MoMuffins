@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LogicScript : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class LogicScript : MonoBehaviour
     public int playerWeight;
     public TMP_Text weightNumber;
 
+    public GameObject gameOverScreen;
+
 
     [ContextMenu("Increase Score")]
     public void addScore()
@@ -19,7 +22,7 @@ public class LogicScript : MonoBehaviour
         playerScore = playerScore + 1;
         scoreNumber.text = playerScore.ToString();
 
-        if(playerScore % 4 == 0)
+        if (playerScore % 4 == 0)
         {
             addWeight();
         }
@@ -48,6 +51,22 @@ public class LogicScript : MonoBehaviour
         speedMultiplier = Mathf.Max(speedMultiplier, 0.1f);
         // Apply the speed multiplier to the player's speed
         playerMovement.speed *= speedMultiplier;
+    }
+
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void quitGame()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void gameOver()
+    {
+        gameOverScreen.SetActive(true);
     }
 
 }
