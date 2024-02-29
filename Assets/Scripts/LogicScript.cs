@@ -16,16 +16,46 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreen;
 
 
+    //public float loseWeight = 1.0f;
+
+    public AudioSource eatFX;
+
+
     [ContextMenu("Increase Score")]
     public void addScore()
     {
         playerScore = playerScore + 1;
         scoreNumber.text = playerScore.ToString();
+        eatFX.Play();
 
         if (playerScore % 4 == 0)
         {
             addWeight();
         }
+
+        if (playerScore >= 20)
+        {
+            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+
+            int nextLevelIndex = currentLevelIndex + 1;
+
+            if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(nextLevelIndex); // Load the next level
+            }
+            else
+            {
+                // Optionally, load the main menu or restart the game if there are no more levels
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+
+    }
+
+    public void decreaseWeightScore()
+    {
+        playerWeight = playerWeight - 1;
+        weightNumber.text = weightNumber.ToString();
 
     }
 
@@ -42,17 +72,37 @@ public class LogicScript : MonoBehaviour
         }
     }
 
-
-    public void UpdatePlayerSpeed(PlayerMovement playerMovement)
+    //===================== PLAYER MOVEMENT =======================================
+    //==================================================================================
+    public void UpdatePlayerSpeed(PlayerMovement playerMovement, bool isWeightLoss= false)
     {
-        // Calculate the new speed multiplier based on the player's weight
-        float speedMultiplier = 1 - (playerWeight * 0.02f);
-        // Make sure the speed doesn't become negative or zero
-        speedMultiplier = Mathf.Max(speedMultiplier, 0.1f);
-        // Apply the speed multiplier to the player's speed
-        playerMovement.speed *= speedMultiplier;
+        float speedMultiplier;
+        if (isWeightLoss)
+        {
+            // Increase speed due to weight loss
+            speedMultiplier = 1 + (0.05f * (playerWeight * 0.02f)); // Example: increase speed more significantly for weight loss
+        }
+        else
+        {
+            // Regular speed adjustment based on current weight
+            speedMultiplier = 1 - (playerWeight * 0.02f);
+        }
+        speedMultiplier = Mathf.Max(speedMultiplier, 0.1f); // Ensure minimum speed limit
+        playerMovement.speed = playerMovement.baseSpeed * speedMultiplier; // Adjust baseSpeed accordingly
     }
 
+    public void lostWeight(PlayerMovement playerMovement)
+    {
+        int weightLossAmount = 1;
+
+        // making sure it doesn't go pass 0
+        playerWeight = Mathf.Max(playerWeight - weightLossAmount, 0);
+        weightNumber.text = playerWeight.ToString();
+
+
+        UpdatePlayerSpeed(playerMovement, true);
+    }
+    //==================================================================================
 
     public void restartGame()
     {

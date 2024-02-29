@@ -14,13 +14,7 @@ public class enemy : MonoBehaviour
             if(healthManager != null && healthManager.health > 0)
             {
                 healthManager.health--; // decrease the health
-                //if(healthManager.health <= 0)
-                //{
-                //    //handle game over
-                //    Debug.Log("Health is 0 or less, game over should trigger.");
 
-                //    logic.gameOver();
-                //}
             }
 
             Destroy(gameObject);

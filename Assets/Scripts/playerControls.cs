@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 6; // Movement speed of the player
     public Rigidbody2D rb; // Reference to the Rigidbody2D component
     private float movement; // The current movement direction (-1 for left, 1 for right)
+    public float baseSpeed = 6; // The base speed of the player
+
 
     float screenHalfWidthInWorldUnits;
 
