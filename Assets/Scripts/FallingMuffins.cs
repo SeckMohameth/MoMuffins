@@ -7,7 +7,7 @@ public class FallingMuffins : MonoBehaviour
 
     float speed = 4;
     float deadZone = -8;
-
+    public AudioSource eatFX;
     public LogicScript logic;
 
 
@@ -26,6 +26,8 @@ public class FallingMuffins : MonoBehaviour
 
         if (transform.position.y < deadZone)
         {
+            Debug.Log("Muffin touched player, destroying muffin and adding score.");
+
             Debug.Log("muffin deleted");
             Destroy(gameObject);
             
@@ -40,7 +42,10 @@ public class FallingMuffins : MonoBehaviour
         {
             logic.addScore();
             Destroy(gameObject);
-        }
+            eatFX.Play();
+
+
+}
        
     }
 }

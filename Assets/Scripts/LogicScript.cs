@@ -16,9 +16,6 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreen;
 
 
-    //public float loseWeight = 1.0f;
-
-    public AudioSource eatFX;
 
 
     [ContextMenu("Increase Score")]
@@ -26,7 +23,6 @@ public class LogicScript : MonoBehaviour
     {
         playerScore = playerScore + 1;
         scoreNumber.text = playerScore.ToString();
-        eatFX.Play();
 
         if (playerScore % 4 == 0)
         {
@@ -72,7 +68,7 @@ public class LogicScript : MonoBehaviour
         }
     }
 
-    //===================== PLAYER MOVEMENT =======================================
+    //===================== PLAYER SPEED MOVEMENT =======================================
     //==================================================================================
     public void UpdatePlayerSpeed(PlayerMovement playerMovement, bool isWeightLoss= false)
     {
