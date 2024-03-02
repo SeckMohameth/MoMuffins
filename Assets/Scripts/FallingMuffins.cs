@@ -7,7 +7,7 @@ public class FallingMuffins : MonoBehaviour
 
     float speed = 4;
     float deadZone = -8;
-    public AudioSource eatFX;
+    //public AudioSource eatFX;
     public LogicScript logic;
 
 
@@ -42,7 +42,7 @@ public class FallingMuffins : MonoBehaviour
         {
             logic.addScore();
             Destroy(gameObject);
-            eatFX.Play();
+            //eatFX.Play();
 
 
 }

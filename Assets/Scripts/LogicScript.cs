@@ -50,8 +50,8 @@ public class LogicScript : MonoBehaviour
 
     public void decreaseWeightScore()
     {
-        playerWeight = playerWeight - 1;
-        weightNumber.text = weightNumber.ToString();
+        playerWeight = Mathf.Max(playerWeight - 1, 0);
+        weightNumber.text = playerWeight.ToString();
 
     }
 
