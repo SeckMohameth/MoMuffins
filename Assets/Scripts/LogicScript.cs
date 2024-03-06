@@ -14,7 +14,7 @@ public class LogicScript : MonoBehaviour
     public TMP_Text weightNumber;
 
     public GameObject gameOverScreen;
-
+    public GameObject nextLevelScreen;
 
 
 
@@ -31,19 +31,23 @@ public class LogicScript : MonoBehaviour
 
         if (playerScore >= 20)
         {
-            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            //Time.timeScale = 0; // pause the game
 
-            int nextLevelIndex = currentLevelIndex + 1;
+            nextLevelScreen.SetActive(true); // display 
 
-            if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
-            {
-                SceneManager.LoadScene(nextLevelIndex); // Load the next level
-            }
-            else
-            {
-                // Optionally, load the main menu or restart the game if there are no more levels
-                SceneManager.LoadScene("MainMenu");
-            }
+            //int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+
+            //int nextLevelIndex = currentLevelIndex + 1;
+
+            //if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+            //{
+            //    SceneManager.LoadScene(nextLevelIndex); // Load the next level
+            //}
+            //else
+            //{
+            //    // Optionally, load the main menu or restart the game if there are no more levels
+            //    SceneManager.LoadScene("MainMenu");
+            //}
         }
 
     }
@@ -103,16 +107,38 @@ public class LogicScript : MonoBehaviour
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //Time.timeScale = 1;
+
     }
 
     public void quitGame()
     {
         SceneManager.LoadScene("Main Menu");
+        Time.timeScale = 1;
     }
 
     public void gameOver()
     {
         gameOverScreen.SetActive(true);
+        //Time.timeScale = 0;
+
+
+        
+    }
+
+
+    public void LevelTwo()
+    {
+        SceneManager.LoadScene("level 2");
+        Time.timeScale = 1;
+
+    }
+
+    public void LevelThree()
+    {
+        SceneManager.LoadScene("level 3");
+        Time.timeScale = 1;
+
     }
 
 }
