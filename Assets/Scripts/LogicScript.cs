@@ -141,4 +141,13 @@ public class LogicScript : MonoBehaviour
 
     }
 
+
+
+    public void AboutDeveloper()
+    {
+        SceneManager.LoadScene("About The Developer");
+        
+
+    }
+
 }
