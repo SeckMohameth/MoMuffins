@@ -15,6 +15,7 @@ public class LogicScript : MonoBehaviour
 
     public GameObject gameOverScreen;
     public GameObject nextLevelScreen;
+    public GameObject youWin;
 
 
 
@@ -33,8 +34,12 @@ public class LogicScript : MonoBehaviour
         {
             //Time.timeScale = 0; // pause the game
 
-            nextLevelScreen.SetActive(true); // display 
+            nextLevelScreen.SetActive(true); // display
+            youWin.SetActive(true);
 
+
+            FindObjectOfType<PlayerMovement>().DisableMovement();
+            FindObjectOfType<Spawner>().DisableSpawning();
             //int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
 
             //int nextLevelIndex = currentLevelIndex + 1;
@@ -48,7 +53,7 @@ public class LogicScript : MonoBehaviour
             //    // Optionally, load the main menu or restart the game if there are no more levels
             //    SceneManager.LoadScene("MainMenu");
             //}
-        }
+        } 
 
     }
 
@@ -114,30 +119,60 @@ public class LogicScript : MonoBehaviour
     public void quitGame()
     {
         SceneManager.LoadScene("Main Menu");
-        Time.timeScale = 1;
+      
     }
+
+
+    public void DisableLogic()
+    {
+        this.enabled = false;
+    }
+
+    public void EnableLogic()
+    {
+        this.enabled = true;
+    }
+
+
 
     public void gameOver()
     {
+       
+        FindObjectOfType<PlayerMovement>().DisableMovement();
+        FindObjectOfType<Spawner>().DisableSpawning();
         gameOverScreen.SetActive(true);
-        //Time.timeScale = 0;
-
-
+        
         
     }
+
+    public void Win()
+    {
+        FindObjectOfType<PlayerMovement>().DisableMovement();
+        FindObjectOfType<Spawner>().DisableSpawning();
+        youWin.SetActive(true);
+    }
+
+    //public void NextLevel()
+    //{
+
+    //    FindObjectOfType<PlayerMovement>().DisableMovement();
+    //    FindObjectOfType<Spawner>().DisableSpawning();
+    //    nextLevelScreen.SetActive(true);
+    
+    //}
 
 
     public void LevelTwo()
     {
         SceneManager.LoadScene("level 2");
-        Time.timeScale = 1;
+      
 
     }
 
     public void LevelThree()
     {
         SceneManager.LoadScene("level 3");
-        Time.timeScale = 1;
+        
 
     }
 

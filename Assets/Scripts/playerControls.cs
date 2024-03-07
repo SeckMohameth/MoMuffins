@@ -69,4 +69,14 @@ public class PlayerMovement : MonoBehaviour
         logicScript.UpdatePlayerSpeed(this);
     }
 
+
+    public void DisableMovement()
+    {
+        this.enabled = false;
+    }
+
+    public void EnableMovement()
+    {
+        this.enabled = true;
+    }
 }

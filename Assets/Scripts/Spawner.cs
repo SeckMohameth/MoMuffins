@@ -37,4 +37,24 @@ public class Spawner : MonoBehaviour
     }
 
 
+    public void DisableSpawning()
+    {
+        //this.enabled = false;
+        //nextSpawnTime = 900;
+
+        Spawner[] spawners = FindObjectsOfType<Spawner>();
+        foreach (Spawner spawner in spawners)
+        {
+            spawner.enabled = false; // This disables the Spawner script
+                                     // If you have a coroutine for spawning, you might need to stop it as well
+                                     // spawner.StopAllCoroutines(); // Uncomment if needed
+        }
+    }
+
+    public void EnableSpawning()
+    {
+        this.enabled = true;
+    }
+
+
 }

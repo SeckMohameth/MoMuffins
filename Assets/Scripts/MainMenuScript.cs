@@ -20,6 +20,7 @@ public class MainMenuScript : MonoBehaviour
     public void StartButton()
     {
         SceneManager.LoadScene("level 1");
+       
     }
 
     public void HowToPlay()

@@ -18,14 +18,19 @@ public class CountdownControllerScript : MonoBehaviour
 
     IEnumerator CountDownToStart()
     {
-        while(countDownTime > 0)
-        {
-            countDownDisplay.text = countDownTime.ToString();
+        //while(countDownTime > 0)
+        //{
+        //    countDownDisplay.text = countDownTime.ToString();
 
-            yield return new WaitForSeconds(1f);
+        //    yield return new WaitForSeconds(1f);
 
-            countDownTime--;
-        }
+        //    countDownTime--;
+
+           
+
+        //}
+
+      
 
         countDownDisplay.text = "GO!";
 
@@ -35,4 +40,6 @@ public class CountdownControllerScript : MonoBehaviour
 
         countDownDisplay.gameObject.SetActive(false);
     }
+
+    
 }
