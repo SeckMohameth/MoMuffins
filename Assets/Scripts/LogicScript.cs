@@ -34,12 +34,14 @@ public class LogicScript : MonoBehaviour
         {
             //Time.timeScale = 0; // pause the game
 
+            DestroyAllMuffins();
+            FindObjectOfType<PlayerMovement>().DisableMovement();
+            FindObjectOfType<Spawner>().DisableSpawning();
+            
             nextLevelScreen.SetActive(true); // display
             youWin.SetActive(true);
 
 
-            FindObjectOfType<PlayerMovement>().DisableMovement();
-            FindObjectOfType<Spawner>().DisableSpawning();
             //int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
 
             //int nextLevelIndex = currentLevelIndex + 1;
@@ -137,6 +139,7 @@ public class LogicScript : MonoBehaviour
 
     public void gameOver()
     {
+        DestroyAllMuffins();
        
         FindObjectOfType<PlayerMovement>().DisableMovement();
         FindObjectOfType<Spawner>().DisableSpawning();
@@ -185,4 +188,23 @@ public class LogicScript : MonoBehaviour
 
     }
 
+
+
+    public void buttonPressed()
+    {
+        Debug.Log("I'm working");
+    }
+
+
+
+    // Add a method to destroy all muffins
+    public void DestroyAllMuffins()
+    {
+        // Find all game objects with FallingMuffins component and destroy them
+        FallingMuffins[] allMuffins = FindObjectsOfType<FallingMuffins>();
+        foreach (FallingMuffins muffin in allMuffins)
+        {
+            Destroy(muffin.gameObject);
+        }
+    }
 }
