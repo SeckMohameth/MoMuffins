@@ -1777,6 +1777,10 @@ PrefabInstance:
       value: MainMenuScript, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6237742669957474936, guid: e7b04d37dfc0a48f899d29c51b5872ce, type: 3}
+      propertyPath: m_text
+      value: Play Again
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237742669957474936, guid: e7b04d37dfc0a48f899d29c51b5872ce, type: 3}
       propertyPath: m_fontSize
       value: 40
       objectReference: {fileID: 0}
