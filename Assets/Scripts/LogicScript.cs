@@ -25,7 +25,7 @@ public class LogicScript : MonoBehaviour
         playerScore = playerScore + 1;
         scoreNumber.text = playerScore.ToString();
 
-        if (playerScore % 4 == 0)
+        if (playerScore % 2 == 0)
         {
             addWeight();
         }
@@ -39,6 +39,8 @@ public class LogicScript : MonoBehaviour
             FindObjectOfType<Spawner>().DisableSpawning();
             
             nextLevelScreen.SetActive(true); // display
+            
+
             youWin.SetActive(true);
 
 
@@ -68,7 +70,7 @@ public class LogicScript : MonoBehaviour
 
     public void addWeight()
     {
-        playerWeight = playerWeight + 2;
+        playerWeight = playerWeight + 10;
         weightNumber.text = playerWeight.ToString();
 
         //find player in scene and adjust speed
@@ -87,20 +89,20 @@ public class LogicScript : MonoBehaviour
         if (isWeightLoss)
         {
             // Increase speed due to weight loss
-            speedMultiplier = 1 + (0.05f * (playerWeight * 0.02f)); // Example: increase speed more significantly for weight loss
+            speedMultiplier = 1 + (0.1f * (Mathf.Max(0, 10 - playerWeight) * 0.1f)); // Increases speed when weight is lost
         }
         else
         {
             // Regular speed adjustment based on current weight
-            speedMultiplier = 1 - (playerWeight * 0.02f);
+            speedMultiplier = 1 - (playerWeight * 0.1f);
         }
-        speedMultiplier = Mathf.Max(speedMultiplier, 0.1f); // Ensure minimum speed limit
+        speedMultiplier = Mathf.Max(speedMultiplier, 0.5f); // Ensure minimum speed limit
         playerMovement.speed = playerMovement.baseSpeed * speedMultiplier; // Adjust baseSpeed accordingly
     }
 
     public void lostWeight(PlayerMovement playerMovement)
     {
-        int weightLossAmount = 1;
+        int weightLossAmount = 10; //adjust this value as needed
 
         // making sure it doesn't go pass 0
         playerWeight = Mathf.Max(playerWeight - weightLossAmount, 0);

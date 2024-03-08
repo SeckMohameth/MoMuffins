@@ -26,7 +26,7 @@ public class FallingHealthySnacks : MonoBehaviour
 
         if (transform.position.y < deadZone)
         {
-            Debug.Log("muffin deleted");
+            
             Destroy(gameObject);
 
 
@@ -36,16 +36,19 @@ public class FallingHealthySnacks : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.gameObject.CompareTag("player"))
         {
-            logic.decreaseWeightScore();
+            PlayerMovement playerMovement = other.gameObject.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                logic.lostWeight(playerMovement); // This ensures weight loss by 10
+            }
             Destroy(gameObject);
         }
-
     }
 
-    
+
+
 
 
 }

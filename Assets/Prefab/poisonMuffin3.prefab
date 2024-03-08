@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5535560185556990929}
   - component: {fileID: 2213756414166443700}
   - component: {fileID: 2351203982145511834}
+  - component: {fileID: 6867760056940944534}
   m_Layer: 0
   m_Name: poisonMuffin3
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 37490b0545a024e51b891de85fe1507d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -147,4 +148,19 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.19
+  m_Radius: 0.38
+--- !u!114 &6867760056940944534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9206605726316934900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a084c676c65ea4a3da6c4daf89923fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleIncrease: {x: 1, y: 1, z: 1}
+  fallSpeed: 4
+  angleRange: 40

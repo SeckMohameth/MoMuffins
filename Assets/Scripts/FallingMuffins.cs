@@ -26,9 +26,7 @@ public class FallingMuffins : MonoBehaviour
 
         if (transform.position.y < deadZone)
         {
-            Debug.Log("Muffin touched player, destroying muffin and adding score.");
-
-            Debug.Log("muffin deleted");
+           
             Destroy(gameObject);
             
 

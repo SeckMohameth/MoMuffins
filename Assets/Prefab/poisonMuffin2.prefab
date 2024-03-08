@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8596242696661725461}
   - component: {fileID: 8805272595038227832}
   - component: {fileID: 2348687838035097981}
+  - component: {fileID: 2822517308438268485}
   - component: {fileID: 2662836020790071978}
   m_Layer: 0
   m_Name: poisonMuffin2
@@ -99,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789f91e38317642b0b39f9e1ef840019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eatFX: {fileID: 0}
   logic: {fileID: 0}
 --- !u!58 &2348687838035097981
 CircleCollider2D:
@@ -135,7 +135,22 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.09, y: -0.03}
   serializedVersion: 2
-  m_Radius: 1.22
+  m_Radius: 0.74
+--- !u!114 &2822517308438268485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417562916349783794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a084c676c65ea4a3da6c4daf89923fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleIncrease: {x: 0.5, y: 0.5, z: 0.5}
+  fallSpeed: 4
+  angleRange: 0
 --- !u!114 &2662836020790071978
 MonoBehaviour:
   m_ObjectHideFlags: 0
