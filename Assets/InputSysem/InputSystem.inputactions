@@ -2,61 +2,50 @@
     "name": "InputSystem",
     "maps": [
         {
-            "name": "slide",
-            "id": "c0ef9064-3c5e-4aa5-9290-bf0aadf0b17a",
+            "name": "Ground",
+            "id": "ae8b16e5-43f2-495b-80dd-3e30bc46d20c",
             "actions": [
                 {
-                    "name": "Movement",
-                    "type": "Value",
-                    "id": "af1ac47a-3bb6-4587-bbde-f23c7fdbbbab",
-                    "expectedControlType": "",
+                    "name": "Move",
+                    "type": "PassThrough",
+                    "id": "9c9b39e7-27a9-474c-bc27-a3aa30640195",
+                    "expectedControlType": "Touch",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "be3f982b-4087-4596-b937-f4e964a17e3a",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Arrow Keys",
-                    "id": "ed092876-7e5a-42fe-be4b-f7667cfb20dc",
+                    "name": "1D Axis",
+                    "id": "bc93ebcf-7ed2-4df0-86cd-b666de74e6ba",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
-                    "id": "24977c4a-e166-4322-aa27-5d464fbeaa50",
-                    "path": "",
+                    "id": "96d191bf-b9c6-4a88-83dd-a85d9cbbe69c",
+                    "path": "<Touchscreen>/primaryTouch/delta/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "70b56280-e4b3-4a37-b445-59d725e4f22a",
-                    "path": "",
+                    "id": "7a39d871-5132-4153-ad17-9b37a2706489",
+                    "path": "<Touchscreen>/primaryTouch/delta/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

@@ -10,12 +10,25 @@ public class PlayerMovement : MonoBehaviour
     public float baseSpeed = 6; // The base speed of the player
 
 
+
     float screenHalfWidthInWorldUnits;
 
     public bool moIsAlive = true;
 
     // reference to the LogicScript component
     public LogicScript logicScript;
+
+
+
+
+
+    // touch screen
+    private bool moveLeft = false;
+    private bool moveRight = false;
+
+
+
+
 
 
     // Start is called before the first frame update
@@ -31,8 +44,30 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        //========================TOUCH==========================================
+
+
+        // Touch control overrides
+        if (moveLeft)
+        {
+            movement = -1;
+        }
+        else if (moveRight)
+        {
+            movement = 1;
+        }
+        else
+        {
+            // Only use keyboard input if no touch input is active
+            movement = 0;
+        }
+       
+
+
         // Read the horizontal input (left/right arrows or A/D keys)
-        float movement = Input.GetAxis("Horizontal");
+        //float movement = Input.GetAxis("Horizontal");
         float velocity = movement * speed;
         transform.Translate(Vector2.right * velocity * Time.deltaTime);
 
@@ -54,14 +89,51 @@ public class PlayerMovement : MonoBehaviour
         // GAME OVER
         if (healthManager.health <= 0)
         {
-            //handle game over
-            Debug.Log("Health is 0 or less, game over should trigger.");
 
             logicScript.gameOver();
             moIsAlive = false;
         }
 
+
     }
+
+
+    // Button control methods
+    public void OnLeftButtonDown()
+    {
+        moveLeft = true;
+        Debug.Log("pressed down");
+    }
+
+    public void OnLeftButtonUp()
+    {
+        moveLeft = false;
+        // If the right button isn't held down, reset movement to 0
+        if (!moveRight)
+        {
+            movement = 0;
+        }
+    }
+
+    public void OnRightButtonDown()
+    {
+        moveRight = true;
+    }
+
+    public void OnRightButtonUp()
+    {
+        moveRight = false;
+        // If the left button isn't held down, reset movement to 0
+        if (!moveLeft)
+        {
+            movement = 0;
+        }
+    }
+
+
+
+
+
 
     public void AdjustSpeed()
     {

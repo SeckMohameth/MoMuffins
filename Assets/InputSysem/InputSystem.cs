@@ -24,61 +24,50 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem"",
     ""maps"": [
         {
-            ""name"": ""slide"",
-            ""id"": ""c0ef9064-3c5e-4aa5-9290-bf0aadf0b17a"",
+            ""name"": ""Ground"",
+            ""id"": ""ae8b16e5-43f2-495b-80dd-3e30bc46d20c"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
-                    ""type"": ""Value"",
-                    ""id"": ""af1ac47a-3bb6-4587-bbde-f23c7fdbbbab"",
-                    ""expectedControlType"": """",
+                    ""name"": ""Move"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9c9b39e7-27a9-474c-bc27-a3aa30640195"",
+                    ""expectedControlType"": ""Touch"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""be3f982b-4087-4596-b937-f4e964a17e3a"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Arrow Keys"",
-                    ""id"": ""ed092876-7e5a-42fe-be4b-f7667cfb20dc"",
+                    ""name"": ""1D Axis"",
+                    ""id"": ""bc93ebcf-7ed2-4df0-86cd-b666de74e6ba"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""24977c4a-e166-4322-aa27-5d464fbeaa50"",
-                    ""path"": """",
+                    ""id"": ""96d191bf-b9c6-4a88-83dd-a85d9cbbe69c"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""70b56280-e4b3-4a37-b445-59d725e4f22a"",
-                    ""path"": """",
+                    ""id"": ""7a39d871-5132-4153-ad17-9b37a2706489"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -87,9 +76,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // slide
-        m_slide = asset.FindActionMap("slide", throwIfNotFound: true);
-        m_slide_Movement = m_slide.FindAction("Movement", throwIfNotFound: true);
+        // Ground
+        m_Ground = asset.FindActionMap("Ground", throwIfNotFound: true);
+        m_Ground_Move = m_Ground.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -148,53 +137,53 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // slide
-    private readonly InputActionMap m_slide;
-    private List<ISlideActions> m_SlideActionsCallbackInterfaces = new List<ISlideActions>();
-    private readonly InputAction m_slide_Movement;
-    public struct SlideActions
+    // Ground
+    private readonly InputActionMap m_Ground;
+    private List<IGroundActions> m_GroundActionsCallbackInterfaces = new List<IGroundActions>();
+    private readonly InputAction m_Ground_Move;
+    public struct GroundActions
     {
         private @InputSystem m_Wrapper;
-        public SlideActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_slide_Movement;
-        public InputActionMap Get() { return m_Wrapper.m_slide; }
+        public GroundActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Ground_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Ground; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SlideActions set) { return set.Get(); }
-        public void AddCallbacks(ISlideActions instance)
+        public static implicit operator InputActionMap(GroundActions set) { return set.Get(); }
+        public void AddCallbacks(IGroundActions instance)
         {
-            if (instance == null || m_Wrapper.m_SlideActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_SlideActionsCallbackInterfaces.Add(instance);
-            @Movement.started += instance.OnMovement;
-            @Movement.performed += instance.OnMovement;
-            @Movement.canceled += instance.OnMovement;
+            if (instance == null || m_Wrapper.m_GroundActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GroundActionsCallbackInterfaces.Add(instance);
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
-        private void UnregisterCallbacks(ISlideActions instance)
+        private void UnregisterCallbacks(IGroundActions instance)
         {
-            @Movement.started -= instance.OnMovement;
-            @Movement.performed -= instance.OnMovement;
-            @Movement.canceled -= instance.OnMovement;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
-        public void RemoveCallbacks(ISlideActions instance)
+        public void RemoveCallbacks(IGroundActions instance)
         {
-            if (m_Wrapper.m_SlideActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GroundActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(ISlideActions instance)
+        public void SetCallbacks(IGroundActions instance)
         {
-            foreach (var item in m_Wrapper.m_SlideActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GroundActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_SlideActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GroundActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public SlideActions @slide => new SlideActions(this);
-    public interface ISlideActions
+    public GroundActions @Ground => new GroundActions(this);
+    public interface IGroundActions
     {
-        void OnMovement(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }

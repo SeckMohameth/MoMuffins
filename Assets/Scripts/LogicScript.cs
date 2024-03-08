@@ -25,7 +25,7 @@ public class LogicScript : MonoBehaviour
         playerScore = playerScore + 1;
         scoreNumber.text = playerScore.ToString();
 
-        if (playerScore % 2 == 0)
+        if (playerScore % 5 == 0)
         {
             addWeight();
         }

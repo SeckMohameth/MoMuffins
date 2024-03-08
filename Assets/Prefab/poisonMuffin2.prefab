@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleIncrease: {x: 0.5, y: 0.5, z: 0.5}
-  fallSpeed: 4
+  fallSpeed: 3.7
   angleRange: 0
 --- !u!114 &2662836020790071978
 MonoBehaviour:
